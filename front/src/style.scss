@@ -1,0 +1,193 @@
+@font-face {
+  font-family: 'Ubuntu';
+  font-weight: 700;
+  src: url(./assets/fonts/Ubuntu-Bold.woff2);
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-weight: 500;
+  src: url(./assets/fonts/Ubuntu-Medium.woff2);
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-weight: 400;
+  src: url(./assets/fonts/Ubuntu-Regular.woff2);
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-weight: 300;
+  src: url(./assets/fonts/Ubuntu-Light.woff2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+:focus {
+  outline: none;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+main {
+  overflow: hidden;
+}
+
+.btn-reset {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.container {
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  max-width: 1280px;
+}
+
+.header {
+  width: 100%;
+  height: 100px;
+  background-color: #116ACC;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
+
+  &__container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* ====== FORM ====== */
+.form {
+  margin: auto;
+  margin-top: 10%;
+  padding-top: 50px;
+  padding-right: 85px;
+  padding-bottom: 50px;
+  padding-left: 115px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: #F3F4F6;
+  border-radius: 50px;
+
+  &__title {
+    margin-bottom: 35px;
+    font-size: 34px;
+    line-height: 40px;
+    color: #000;
+  }
+
+  &__label {
+    position: relative;
+    margin-bottom: 25px;
+  }
+
+  &__span {
+    position: absolute;
+    top: 30%;
+    left: -60px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #182233;
+  }
+
+  &__input {
+    width: 300px;
+    padding: 10px 16px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #374151;
+    border: 1px solid #9CA3AF;
+    border-radius: 7px;
+    transition: background-color .3s ease-in-out;
+    transition: border-color .3s ease-in-out;
+
+    &:hover {
+      background-color: #A0C3FF;
+      border-color: #116ACC;
+    }
+
+    &::placeholder {
+      font-size: 16px;
+      line-height: 24px;
+      color: #6B7280;
+    }
+
+    &--invalid {
+      border-color: #BA0000;
+    }
+
+    &--valid {
+      border-color: #76CA66;
+    }
+  }
+
+  &__valid-massage {
+    // position: absolute;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    top: 25%;
+    right: -30px;
+  }
+
+  &__valid-span {
+    margin-left: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #76CA66;
+  }
+
+  &__invalid-span {
+    margin-left: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #BA0000;
+  }
+
+  &__btn {
+    padding: 14px 21px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #fff;
+    background-color: #116ACC;
+    border-radius: 7px;
+    transition: background-color .3s ease-in-out;
+
+    &:hover {
+      background-color: rgb(88, 151, 219);
+    }
+
+    &:active {
+      background-color: rgb(12, 74, 143);
+    }
+
+    &:disabled {
+      background-color: #9CA3AF;
+    }
+  }
+}

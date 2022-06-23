@@ -1,15 +1,19 @@
 import 'babel-polyfill';
 
-import {el, setChildren} from 'redom';
+import { el, setChildren } from 'redom';
+import { createHeader } from './components/header.js';
+import { createFormPage } from './components/formPage.js';
 
-import header from './components/header.js';
-import form from './components/form.js';
+// const main = el('main');
 
-const main = el('main');
+// const header = createHeader();
+// setChildren(window.document.body, [
+//   header,
+//   main,
+// ])
 
-setChildren(window.document.body, [
-  header,
-  main,
-])
+// setChildren(main, form)
 
-setChildren(main, form)
+const formPage = createFormPage();
+
+window.document.body.append(formPage)

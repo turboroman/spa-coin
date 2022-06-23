@@ -1,4 +1,4 @@
-import { validateInput } from "../src/components/form";
+import { validateInput } from "../src/components/formPage";
 import { el } from 'redom';
 import '../style.scss';
 

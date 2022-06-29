@@ -1,5 +1,11 @@
-export function loadIPI(src, token) {
-  return fetch(src, {
+export function loadAPI(src, token) {
+  window.history.pushState(
+    {src},
+    src,
+    src
+  )
+
+  return fetch(`http://localhost:3000/${src}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -10,7 +16,7 @@ export function loadIPI(src, token) {
 }
 
 export function getUserToken(src, userLogin, userPassword) {
-  return fetch(src, {
+  return fetch(`http://localhost:3000/${src}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -2,11 +2,14 @@ import { el, setChildren } from 'redom';
 import '../style.scss';
 import validImg from '../assets/imgs/valid.svg';
 import invalidImg from '../assets/imgs/invalid.svg';
-import { loadIPI, getUserToken } from './api';
+import { loadAPI, getUserToken } from './api.js';
 import { createHeader } from './header.js';
 
 import { createAllAccountsPage } from './allAccounts.js';
 
+import {LS} from '../index.js'
+
+// export function render(data) {
 export function createFormPage() {
   const header = createHeader();
   const app = el('div');
@@ -29,7 +32,7 @@ export function createFormPage() {
     validMessagePassword,
   ]);
 
-  const btn = el('button', { class: 'form__btn btn-reset' }, 'Войти');
+  const btn = el('button', { type: 'submit' }, { class: 'form__btn btn-reset' }, 'Войти');
 
   const form = el('form', { class: 'form' }, [
     title,
@@ -80,32 +83,39 @@ export function createFormPage() {
     })
   }
 
-  btn.addEventListener('click', (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (inputLogin.classList.contains('form__input--valid') && inputPassword.classList.contains('form__input--valid')) {
-
       enterIntoAccount(inputLogin.value, inputPassword.value);
     }
+    LS.setItem('login', JSON.stringify(inputLogin.value))
   })
 
   function enterIntoAccount(userLogin, userPassword) {
-    getUserToken(`http://localhost:3000/login`, userLogin, userPassword)
+    getUserToken(`login`, userLogin, userPassword)
       .then(objWithToken => {
         if (objWithToken.error === 'No such user') {
+
           validMessageLogin.innerHTML = '';
           validMessageLogin.classList.add('form__input--invalid');
           createValidMessage('Нет такого пользователя', 'invalid', validMessageLogin);
+
         } else if (!objWithToken.payload) {
+
           validMessagePassword.innerHTML = '';
           validMessagePassword.classList.add('form__input--invalid');
           createValidMessage('Неверный пароль', 'invalid', validMessagePassword);
+
         } else {
-          loadIPI(`http://localhost:3000/accounts`, objWithToken.payload.token).then(objAccounts => (
+          // loadAPI(`accounts`, objWithToken.payload.token)
+          //   .then(objAccounts => (
+          //     window.document.body.innerHTML = '',
+          //     window.document.body.append(createAllAccountsPage(objAccounts.payload))
+          //   ))
+          LS.setItem('token data', JSON.stringify(objWithToken.payload.token))
 
-            window.document.body.innerHTML = '',
-            window.document.body.append(createAllAccountsPage(objAccounts.payload))
-
-          ))
+          loadAPI(`accounts`, objWithToken.payload.token)
+            .then(objAccounts => LS.setItem('accounts data', JSON.stringify(objAccounts.payload)))
         }
       });
   }

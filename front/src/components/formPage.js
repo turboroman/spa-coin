@@ -89,6 +89,7 @@ export function createFormPage() {
       enterIntoAccount(inputLogin.value, inputPassword.value);
     }
     LS.setItem('login', JSON.stringify(inputLogin.value))
+    LS.setItem('password', JSON.stringify(inputPassword.value))
   })
 
   function enterIntoAccount(userLogin, userPassword) {
@@ -107,11 +108,15 @@ export function createFormPage() {
           createValidMessage('Неверный пароль', 'invalid', validMessagePassword);
 
         } else {
+
           // loadAPI(`accounts`, objWithToken.payload.token)
           //   .then(objAccounts => (
           //     window.document.body.innerHTML = '',
-          //     window.document.body.append(createAllAccountsPage(objAccounts.payload))
+          //     // window.document.body.innerHTML = createAllAccountsPage(objAccounts.payload).innerHTML,
+          //     window.document.body.append(createAllAccountsPage(objAccounts.payload)),
+          //     console.log(objAccounts.payload)
           //   ))
+
           LS.setItem('token data', JSON.stringify(objWithToken.payload.token))
 
           loadAPI(`accounts`, objWithToken.payload.token)
@@ -119,7 +124,6 @@ export function createFormPage() {
         }
       });
   }
-
   setChildren(app, [header, form]);
 
   return app;

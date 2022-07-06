@@ -1,4 +1,5 @@
 import { el, setChildren } from 'redom';
+import { initPage } from '../index';
 import logo from '../assets/imgs/Logo.svg';
 import '../style.scss';
 
@@ -17,7 +18,12 @@ export function createHeaderWithNav() {
   const linkAccounts = el('a', { class: 'header__link header__link--accounts' }, 'Счета');
   const linkCurrency = el('a', { class: 'header__link header__link--currency' }, 'Валюта');
   const linkExit = el('a', { class: 'header__link header__link--exit' }, 'Выйти');
-  linkExit.href = '/';
+
+  linkExit.addEventListener('click', (e) => {
+    e.preventDefault();
+    history.pushState(null, '', `/`);
+    initPage();
+  })
 
   setChildren(headerNav, [
     linkATM,

@@ -1,9 +1,9 @@
+import { initPage } from "../index.js";
+
 export function loadAPI(src, token) {
-  window.history.pushState(
-    {src},
-    src,
-    src
-  )
+
+  history.pushState(null, '', `${src}`);
+  initPage();
 
   return fetch(`http://localhost:3000/${src}`, {
     method: 'GET',

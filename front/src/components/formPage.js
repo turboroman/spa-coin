@@ -88,8 +88,8 @@ export function createFormPage() {
     if (inputLogin.classList.contains('form__input--valid') && inputPassword.classList.contains('form__input--valid')) {
       enterIntoAccount(inputLogin.value, inputPassword.value);
     }
-    LS.setItem('login', JSON.stringify(inputLogin.value))
-    LS.setItem('password', JSON.stringify(inputPassword.value))
+    // LS.setItem('login', JSON.stringify(inputLogin.value))
+    // LS.setItem('password', JSON.stringify(inputPassword.value))
   })
 
   function enterIntoAccount(userLogin, userPassword) {

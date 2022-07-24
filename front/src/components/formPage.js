@@ -5,11 +5,8 @@ import invalidImg from '../assets/imgs/invalid.svg';
 import { loadAPI, getUserToken } from './api.js';
 import { createHeader } from './header.js';
 
-import { createAllAccountsPage } from './allAccounts.js';
-
 import {LS} from '../index.js'
 
-// export function render(data) {
 export function createFormPage() {
   const header = createHeader();
   const app = el('div');
@@ -88,8 +85,6 @@ export function createFormPage() {
     if (inputLogin.classList.contains('form__input--valid') && inputPassword.classList.contains('form__input--valid')) {
       enterIntoAccount(inputLogin.value, inputPassword.value);
     }
-    // LS.setItem('login', JSON.stringify(inputLogin.value))
-    // LS.setItem('password', JSON.stringify(inputPassword.value))
   })
 
   function enterIntoAccount(userLogin, userPassword) {
@@ -108,14 +103,6 @@ export function createFormPage() {
           createValidMessage('Неверный пароль', 'invalid', validMessagePassword);
 
         } else {
-
-          // loadAPI(`accounts`, objWithToken.payload.token)
-          //   .then(objAccounts => (
-          //     window.document.body.innerHTML = '',
-          //     // window.document.body.innerHTML = createAllAccountsPage(objAccounts.payload).innerHTML,
-          //     window.document.body.append(createAllAccountsPage(objAccounts.payload)),
-          //     console.log(objAccounts.payload)
-          //   ))
 
           LS.setItem('token data', JSON.stringify(objWithToken.payload.token))
 

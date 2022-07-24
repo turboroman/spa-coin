@@ -43,5 +43,10 @@ module.exports = (env) => ({
   devServer: {
     historyApiFallback: true,
     hot: true,
+  },
+
+  
+  experiments: {
+    topLevelAwait: true
   }
 });

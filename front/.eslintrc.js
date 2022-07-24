@@ -15,5 +15,9 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'prettier/prettier': 'error',
   },
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
+  requireConfigFile: false,
+  parserOptions: {
+    ecmaVersion: 8,
+  }
 };

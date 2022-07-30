@@ -34,6 +34,9 @@ export function createHeaderWithNav() {
   changeAddress(linkCurrency, '/currencies');
 
   changeAddress(linkExit, '/');
+  linkExit.addEventListener('click', () => {
+    localStorage.removeItem('login');
+  });
 
   setChildren(headerNav, [
     linkBanks,

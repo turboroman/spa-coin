@@ -5,7 +5,7 @@ import invalidImg from '../assets/imgs/invalid.svg';
 import { loadAPI, getUserToken } from './api.js';
 import { createHeader } from './header.js';
 
-import {LS} from '../index.js'
+import {initPage, LS} from '../index.js'
 
 export function createFormPage() {
   const header = createHeader();
@@ -103,11 +103,15 @@ export function createFormPage() {
           createValidMessage('Неверный пароль', 'invalid', validMessagePassword);
 
         } else {
+          LS.setItem('login', JSON.stringify(userLogin));
+          LS.setItem('password', JSON.stringify(userPassword));
 
-          LS.setItem('token data', JSON.stringify(objWithToken.payload.token))
+          LS.setItem('token', JSON.stringify(objWithToken.payload.token))
 
           loadAPI(`accounts`, objWithToken.payload.token)
-            .then(objAccounts => LS.setItem('accounts data', JSON.stringify(objAccounts.payload)))
+            .then(objAccounts => LS.setItem('accounts', JSON.stringify(objAccounts.payload)))
+
+          initPage();
         }
       });
   }

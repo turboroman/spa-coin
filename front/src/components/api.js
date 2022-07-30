@@ -3,8 +3,7 @@ import { initPage } from "../index.js";
 export function loadAPI(src, token) {
 
   history.pushState(null, '', `${src}`);
-  initPage();
-
+  
   return fetch(`http://localhost:3000/${src}`, {
     method: 'GET',
     headers: {

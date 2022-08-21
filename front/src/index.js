@@ -3,11 +3,9 @@ import './style.scss';
 import { loadAPI } from './components/api.js';
 
 export const LS = localStorage;
-const accountsData = JSON.parse(LS.getItem('accounts'));
 const banksData = JSON.parse(LS.getItem('banks'));
 
-
-const appWrapper = document.createElement('div');
+export const appWrapper = document.createElement('div');
 appWrapper.classList.add('app');
 window.document.body.append(appWrapper);
 
@@ -15,33 +13,41 @@ window.document.body.append(appWrapper);
 export async function initPage() {
   appWrapper.innerHTML = '';
 
-  if (location.pathname == '/' || !localStorage.login) {
+  if (!localStorage.login) {
     const moduleForm = await import('./components/formPage.js');
     appWrapper.append(moduleForm.createFormPage())
   } else {
 
-    if (location.pathname == '/accounts') {
+    if (location.pathname == '/' || location.pathname == '/accounts') {
       const moduleAllAccounts = await import('./components/allAccounts.js');
-      appWrapper.append(moduleAllAccounts.createAllAccountsPage(accountsData));
+      appWrapper.append(moduleAllAccounts.createAllAccountsPage());
     }
 
     if (location.pathname == '/banks') {
       const moduleBanks = await import('./components/banksPage.js');
       appWrapper.append(moduleBanks.createBanksPage(banksData));
-        
-      const script = document.createElement('script');
-      script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAeaBdrKOAHldYo6ErNz3Ko2gL-rJqk-Ws&callback=initMap";
-      script.async = true;
-      script.defer = true;
-      window.document.body.append(script);
     }
 
     if (location.pathname == '/currencies') {
       const moduleCurrencies = await import('./components/currencyPage.js');
-      window.document.body.append(moduleCurrencies.createCarrencyPage());
       appWrapper.append(moduleCurrencies.createCarrencyPage())
+    }
+
+    if (location.pathname == '/account') {
+      const moduleAccount = await import('./components/accountPage.js');
+      appWrapper.append(moduleAccount.createAccountPage())
     }
   }
 }
+
+export function changeAddress(btn, address) {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    history.pushState(null, '', address);
+    initPage();
+  })
+}
+
+window.onpopstate = () => initPage();
 
 initPage();

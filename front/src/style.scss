@@ -54,6 +54,30 @@ main {
   cursor: pointer;
 }
 
+.blue-btn {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: white;
+  background-color: #116ACC;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), #116ACC;
+  }
+
+  &:active {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), #116ACC;
+  }
+
+  &:disabled {
+    background: #9CA3AF;
+  }
+}
+
 .container {
   margin: 0 auto;
   padding-left: 30px;
@@ -89,7 +113,7 @@ main {
 
   &__link {
     margin-bottom: 10px;
-    margin-left: 10px;
+    margin-left: 25px;
     padding: 16px 24px;
     font-weight: 500;
     font-size: 16px;
@@ -221,8 +245,286 @@ main {
 
 /* ====== BANKS ====== */
 .banks {
+  &__heading {
+    padding-top: 50px;
+    padding-bottom: 56px;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 40px;
+  }
+
   &__map {
     width: 100%;
     height: 728px;
+  }
+}
+
+/* ====== ACCOUNTS ====== */
+.accounts {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__upper {
+    padding: 50px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__upper-left {
+    display: flex;
+  }
+
+  &__heading {
+    margin-right: 35px;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 40px;
+  }
+
+  &__select {
+    display: block;
+    padding: 10px 15px;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid #116ACC;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+
+  &__add-btn {
+    padding: 16px 24px;
+    padding-left: 58px;
+    background-position: 12% 50%;
+    background-repeat: no-repeat;
+    background-image: url('../src/assets/imgs/plus.svg');
+  }
+}
+
+.card {
+  margin-right: 70px;
+  margin-bottom: 50px;
+  padding: 22px;
+  max-width: 400px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+
+  &__title {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  &__balance {
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__transaction {
+    margin-right: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__trans-text {
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 15px;
+  }
+
+  &__trans-date {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+  }
+
+  &__btn {
+    padding: 16px 22px;
+  }
+}
+
+.choices {
+  width: 300px;
+  position: relative;
+
+  &__input {
+    width: 100%;
+  }
+
+  &__list--single {
+    display: none;
+  }
+
+  &__list {
+    position: absolute;
+    top: 23;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
+
+    &--dropdown {
+      display: none;
+    }
+  }
+
+  &__item {
+    padding: 10px 16px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #374151;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background-color: #A0C3FF;
+    }
+  }
+}
+
+.is-active {
+  display: block;
+}
+
+
+// ===== ACCOUNT-PAGE =====
+
+.account {
+  &__top-wrapper {
+    padding-top: 50px;
+    padding-bottom: 20px;
+  }
+
+  &__top {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__heading {
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 40px;
+  }
+
+  &__back-btn {
+    padding: 16px 24px;
+    padding-left: 58px;
+    background-position: 12% 50%;
+    background-repeat: no-repeat;
+    background-image: url('../src/assets/imgs/arrow.svg');
+  }
+
+  &__number {
+    font-size: 34px;
+    line-height: 40px;
+  }
+
+  &__balance-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__balance-text {
+    margin-right: 10px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+  }
+
+  &__balance-number {
+    font-size: 20px;
+    line-height: 23px;
+  }
+}
+
+.transfer-form {
+  padding: 25px 50px;
+  max-width: 615px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: #F3F4F6;
+  border-radius: 50px;
+
+  &__heading {
+    align-self: start;
+    margin-bottom: 25px; 
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+  }
+
+  &__send-btn {
+    align-self: center;
+    padding: 16px 24px;
+    padding-left: 58px;
+    background-position: 12% 50%;
+    background-repeat: no-repeat;
+    background-image: url('../src/assets/imgs/coolicon.svg');
+  }
+}
+
+.receiver {
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+
+  &__heading {
+    margin-right: 18px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #182233;
+  }
+
+  &__select {
+    padding: 10px 15px;
+    display: block;
+    width: 300px;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid #116ACC;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+}
+
+.amount {
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+
+  &__heading {
+    margin-right: 18px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #182233;
+  }
+
+  &__input {
+    padding: 10px 15px;
+    display: block;
+    width: 300px;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid #116ACC;
+    border-radius: 7px;
+    cursor: pointer;
   }
 }

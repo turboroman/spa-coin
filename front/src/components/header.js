@@ -2,6 +2,7 @@ import { el, setChildren } from 'redom';
 import { initPage } from '../index';
 import logo from '../assets/imgs/Logo.svg';
 import '../style.scss';
+import { changeAddress } from '../index.js';
 
 export function createHeader() {
   return el('header', { class: 'header' }, [
@@ -9,14 +10,6 @@ export function createHeader() {
       el('img', { src: logo }),
     )
   ]);
-}
-
-function changeAddress(btn, address) {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    history.pushState(null, '', address);
-    initPage();
-  })
 }
 
 export function createHeaderWithNav() {

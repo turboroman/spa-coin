@@ -13,6 +13,7 @@
     "@babel/node": "^7.18.5",
     "@babel/plugin-transform-modules-commonjs": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
+    "@googlemaps/js-api-loader": "^1.14.3",
     "@types/jest": "^28.1.2",
     "babel-jest": "^28.1.1",
     "babel-loader": "^8.2.5",
@@ -40,8 +41,12 @@
     "webpack-dev-server": "^4.9.2"
   },
   "dependencies": {
+    "-": "^0.0.1",
+    "@googlemaps/markerclusterer": "^2.0.10",
     "@toolz/is-a-regular-object": "^1.0.2",
     "babel-polyfill": "^6.26.0",
+    "choices.js": "^10.1.0",
+    "D": "^1.0.0",
     "google-maps": "^4.3.3",
     "navigo": "^8.11.1",
     "redom": "^3.29.0"

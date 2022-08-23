@@ -33,10 +33,10 @@ export async function initPage() {
       appWrapper.append(moduleCurrencies.createCarrencyPage())
     }
 
-    if (location.pathname == '/account') {
-      const moduleAccount = await import('./components/accountPage.js');
-      appWrapper.append(moduleAccount.createAccountPage())
-    }
+    // if (location.pathname == '/account') {
+    //   const moduleAccount = await import('./components/accountPage.js');
+    //   appWrapper.append(moduleAccount.createAccountPage())
+    // }
   }
 }
 

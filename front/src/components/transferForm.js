@@ -41,7 +41,7 @@ export function createTransferForm() {
   // ==== SEND BTN ====
   const sendBtn = el('button', { class: 'transfer-form__send-btn blue-btn'}, 'Отправить');
   sendBtn.addEventListener('submit', () => {
- 
+    // accountsList
   });
 
   setChildren(form, [formHeading, receiverWrapper, amountWrapper, sendBtn]);

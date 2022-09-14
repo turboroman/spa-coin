@@ -48,6 +48,7 @@
     "choices.js": "^10.1.0",
     "D": "^1.0.0",
     "google-maps": "^4.3.3",
+    "inputmask": "^5.0.7",
     "navigo": "^8.11.1",
     "redom": "^3.29.0"
   }

@@ -9,7 +9,6 @@ export const appWrapper = document.createElement('div');
 appWrapper.classList.add('app');
 window.document.body.append(appWrapper);
 
-
 export async function initPage() {
   appWrapper.innerHTML = '';
 
@@ -20,7 +19,7 @@ export async function initPage() {
 
     if (location.pathname == '/' || location.pathname == '/accounts') {
       const moduleAllAccounts = await import('./components/allAccounts.js');
-      appWrapper.append(moduleAllAccounts.createAllAccountsPage());
+      moduleAllAccounts.createAllAccountsPage().then(app => appWrapper.append(app));
     }
 
     if (location.pathname == '/banks') {
@@ -32,11 +31,16 @@ export async function initPage() {
       const moduleCurrencies = await import('./components/currencyPage.js');
       appWrapper.append(moduleCurrencies.createCarrencyPage())
     }
+    
+    if (LS.getItem('opened Account') !== null) {
+      const openedAccount = JSON.parse(LS.getItem('opened Account'))
 
-    // if (location.pathname == '/account') {
-    //   const moduleAccount = await import('./components/accountPage.js');
-    //   appWrapper.append(moduleAccount.createAccountPage())
-    // }
+      if (location.pathname == `/account/${openedAccount}`) {
+        const moduleAccount = await import('./components/accountPage.js');
+        
+        moduleAccount.createAccountPage(openedAccount).then(app => appWrapper.append(app))
+      }
+    } 
   }
 }
 

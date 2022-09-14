@@ -108,8 +108,8 @@ export function createFormPage() {
 
           LS.setItem('token', JSON.stringify(objWithToken.payload.token))
 
-          loadAPI(`accounts`, objWithToken.payload.token)
-            .then(objAccounts => LS.setItem('accounts', JSON.stringify(objAccounts.payload)))
+          // loadAPI(`accounts`, objWithToken.payload.token)
+          //   .then(objAccounts => LS.setItem('accounts', JSON.stringify(objAccounts.payload)))
 
           initPage();
         }

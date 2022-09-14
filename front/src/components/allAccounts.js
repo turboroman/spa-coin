@@ -3,11 +3,16 @@ import '../style.scss';
 import { createHeaderWithNav } from './header.js';
 import Choices from 'choices.js';
 import { LS, changeAddress, appWrapper, initPage } from '../index.js';
+import { loadAPI, getAccountInfo } from './api';
 
-const token = JSON.parse(LS.getItem('token'));
-const accountsData = JSON.parse(LS.getItem('accounts'));
+export async function createAllAccountsPage() {
 
-export function createAllAccountsPage() {
+  const token = JSON.parse(LS.getItem('token'));
+
+  await loadAPI(`accounts`, token)
+    .then(objAccounts => LS.setItem('accounts', JSON.stringify(objAccounts.payload)))
+  const accountsData = JSON.parse(LS.getItem('accounts'));
+
   const app = el('div');
   const header = createHeaderWithNav();
   const accounts = el('div', { class: 'accounts container' });
@@ -78,9 +83,9 @@ export function createAllAccountsPage() {
     cardsList.innerHTML = '';
     if (accountsData) {
       accountsData.forEach(account => {
-        const card = el('div', { class: 'accounts__card card' }, [
-          el('h3', { class: 'card__title' }, account.account),
-          el('span', { class: 'card__balance' }, account.balance + 'P'),
+        const card = el('div', { class: 'accounts__card card-account' }, [
+          el('h3', { class: 'card-account__title' }, account.account),
+          el('span', { class: 'card-account__balance' }, account.balance + 'P'),
         ]);
 
         if (account.transactions[0]) {
@@ -105,7 +110,7 @@ export function createAllAccountsPage() {
               monthWord = 'Июль';
             case '08':
               monthWord = 'Август';
-            case '9':
+            case '09':
               monthWord = 'Сентябрь';
             case '10':
               monthWord = 'Октябрь';
@@ -117,10 +122,10 @@ export function createAllAccountsPage() {
           const day = dateFromData.split('-')[2].split('T')[0];
           const dateToShow = day + ' ' + monthWord + ' ' + year;
 
-          const cardBottom = el('div', { class: 'card__bottom' }, [
-            el('div', { class: 'card__transaction' }, [
-              el('span', { class: 'card__trans-text' }, 'Последняя транзакция'),
-              el('span', { class: 'card__trans-date' }, dateToShow),
+          const cardBottom = el('div', { class: 'card-account__bottom' }, [
+            el('div', { class: 'card-account__transaction' }, [
+              el('span', { class: 'card-account__trans-text' }, 'Последняя транзакция'),
+              el('span', { class: 'card-account__trans-date' }, dateToShow),
             ])
           ]);
           cardBottom.append(createOpenBtn());
@@ -128,9 +133,9 @@ export function createAllAccountsPage() {
           card.append(cardBottom);
 
         } else {
-          const cardBottom = el('div', { class: 'card__bottom' }, [
-            el('div', { class: 'card__transaction' }, [
-              el('span', { class: 'card__trans-text' }, 'Список транзакций пуст'),
+          const cardBottom = el('div', { class: 'card-account__bottom' }, [
+            el('div', { class: 'card-account__transaction' }, [
+              el('span', { class: 'card-account__trans-text' }, 'Список транзакций пуст'),
             ]),
           ]);
           cardBottom.append(createOpenBtn());
@@ -139,18 +144,22 @@ export function createAllAccountsPage() {
         }
 
         function createOpenBtn() {
-          const openAccountBtn = el('button', { class: 'card__btn blue-btn' }, 'Открыть');
-
+          const openAccountBtn = el('button', { class: 'card-account__btn blue-btn' }, 'Открыть');
           openAccountBtn.addEventListener('click', async (e) => {
+            LS.removeItem('opened Account')
+            LS.setItem('opened Account', JSON.stringify(account.account))
+
+            LS.removeItem('account data')
+
+            await getAccountInfo(account.account, token)
+              .then(obj => LS.setItem('account data', JSON.stringify(obj.payload)))
+
             e.preventDefault();
-            history.pushState(null, '', '/account');
+            history.pushState(null, '', `/account/${account.account}`);
+            initPage();
+          })
+          // changeAddress(openAccountBtn, `/account/${account.account}`)
 
-            const moduleAccount = await import('./accountPage.js');
-            appWrapper.innerHTML = '';
-            appWrapper.append(moduleAccount.createAccountPage(account));
-
-            window.onpopstate = () => initPage();
-          });
           return openAccountBtn;
         }
         cardsList.append(card);
@@ -160,6 +169,8 @@ export function createAllAccountsPage() {
 
   accounts.append(cardsList);
   setChildren(app, [header, accounts]);
+
+  // initPage()
 
   return app;
 }

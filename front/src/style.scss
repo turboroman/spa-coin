@@ -22,6 +22,12 @@
   src: url(./assets/fonts/Ubuntu-Light.woff2);
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -356,7 +362,7 @@ main {
 }
 
 .choices {
-  width: 300px;
+  max-width: 300px;
   position: relative;
 
   &__input {
@@ -374,6 +380,8 @@ main {
     width: 100%;
     background-color: #fff;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
+
+    z-index: 100;
 
     &--dropdown {
       display: none;
@@ -401,8 +409,10 @@ main {
 // ===== ACCOUNT-PAGE =====
 
 .account {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  
   &__top-wrapper {
-    padding-top: 50px;
     padding-bottom: 20px;
   }
 
@@ -451,9 +461,26 @@ main {
   }
 }
 
-.transfer-form {
+.history {
   padding: 25px 50px;
-  max-width: 615px;
+  display: flex;
+  flex-direction: column;
+  // align-items: flex-end;
+  background: #F3F4F6;
+  border-radius: 50px;
+
+  &__heading {
+    align-self: start;
+    margin-bottom: 25px; 
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+  }
+}
+
+.transfer-form {
+  margin-bottom: 40px;
+  padding: 25px 50px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -546,6 +573,7 @@ main {
 }
 
 .card-cur {
+  margin-bottom: 50px;
   padding: 50px;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
@@ -565,6 +593,11 @@ main {
 
   &__item {
     margin-bottom: 25px;
+    display: flex;
+    align-items: flex-end;
+    &:hover {
+      color: #116ACC;
+    }
   }
 
   &__code {
@@ -573,9 +606,64 @@ main {
     line-height: 23px;
   }
 
+  &__dots {
+    flex-grow: 1;
+    border-bottom: 1px dotted black;
+  }
+
   &__amount {
     font-weight: 400;
     font-size: 20px;
     line-height: 23px;
+  }
+}
+
+.ex-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__text {
+    margin-right: 20px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  &__selects {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+
+  &__from-wrapper, &__to-wrapper, &__input-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__from-wrapper {
+    margin-bottom: 15px;
+  }
+  
+  &__select {
+    width: 135px;
+    display: block;
+    padding: 10px 15px;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid #9CA3AF;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+
+  &__input {
+    align-items: center;
+    padding: 8px 16px;
+    border: 1px solid #9CA3AF;
+    border-radius: 7px;
+  }
+
+  &__btn {
+    padding: 40px 15px;
   }
 }

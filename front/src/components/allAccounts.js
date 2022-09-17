@@ -158,8 +158,7 @@ export async function createAllAccountsPage() {
             history.pushState(null, '', `/account/${account.account}`);
             initPage();
           })
-          // changeAddress(openAccountBtn, `/account/${account.account}`)
-
+          
           return openAccountBtn;
         }
         cardsList.append(card);
@@ -169,8 +168,6 @@ export async function createAllAccountsPage() {
 
   accounts.append(cardsList);
   setChildren(app, [header, accounts]);
-
-  // initPage()
 
   return app;
 }

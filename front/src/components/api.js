@@ -56,3 +56,22 @@ export function makeTranfer(sender, receiver, amount) {
     .then(response => response.json())
 }
 
+
+export function makeExchange(sender, receiver, amount) {
+  const token = JSON.parse(LS.getItem('token'))
+
+  return fetch(`http://localhost:3000/currency-buy`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Basic ${token}`,
+    },
+    body: JSON.stringify({
+      from: sender,
+      to: receiver,
+      amount: amount
+    })
+  })
+    .then(response => response.json())
+}
+

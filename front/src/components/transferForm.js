@@ -27,7 +27,6 @@ export function createTransferForm(accountOfSender) {
 
   const receiverChoices = new Choices(receiverSelect, {
     allowHTML: true,
-    // searchEnabled: false,
     removeItems: false,
     itemSelectText: '',
     position: 'bottom',

@@ -4,6 +4,7 @@ import { createHeaderWithNav } from './header.js';
 import { LS, changeAddress, initPage } from '../index.js';
 import { createTransferForm } from './transferForm.js';
 import { loadAPI, getAccountInfo } from './api';
+import { createHistoryBlock } from './historyTransfers';
 
 export async function createAccountPage(openedAccount) {
 
@@ -37,7 +38,9 @@ export async function createAccountPage(openedAccount) {
 
   const newTransferForm = createTransferForm(data.account);
 
-  setChildren(accountContent, [accountTopWrapper, newTransferForm]);
+  const historyBlock = createHistoryBlock()
+
+  setChildren(accountContent, [accountTopWrapper, newTransferForm, historyBlock]);
   setChildren(app, [header, accountContent]);
 
   return app;

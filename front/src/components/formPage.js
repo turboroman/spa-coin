@@ -105,11 +105,7 @@ export function createFormPage() {
         } else {
           LS.setItem('login', JSON.stringify(userLogin));
           LS.setItem('password', JSON.stringify(userPassword));
-
           LS.setItem('token', JSON.stringify(objWithToken.payload.token))
-
-          // loadAPI(`accounts`, objWithToken.payload.token)
-          //   .then(objAccounts => LS.setItem('accounts', JSON.stringify(objAccounts.payload)))
 
           initPage();
         }

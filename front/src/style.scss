@@ -411,7 +411,7 @@ main {
 .account {
   padding-top: 50px;
   padding-bottom: 50px;
-  
+
   &__top-wrapper {
     padding-bottom: 20px;
   }
@@ -465,16 +465,60 @@ main {
   padding: 25px 50px;
   display: flex;
   flex-direction: column;
-  // align-items: flex-end;
   background: #F3F4F6;
   border-radius: 50px;
 
   &__heading {
     align-self: start;
-    margin-bottom: 25px; 
+    margin-bottom: 25px;
     font-weight: 700;
     font-size: 20px;
     line-height: 23px;
+  }
+
+  &__table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0;
+  }
+
+  &__thead {
+    background: #116ACC;
+  }
+
+  &__th-thead {
+    padding: 20px 50px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #fff;
+
+    &--first {
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
+    }
+
+    &--last {
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+  }
+
+  &__th-tbody {
+    padding: 20px 50px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #374151;
+    border-bottom: 2px solid rgba(0, 82, 255, 0.1);
+
+    &--green {
+      color: #76CA66;
+    }
+
+    &--red {
+      color: #FD4E5D;
+    }
   }
 }
 
@@ -489,7 +533,7 @@ main {
 
   &__heading {
     align-self: start;
-    margin-bottom: 25px; 
+    margin-bottom: 25px;
     font-weight: 700;
     font-size: 20px;
     line-height: 23px;
@@ -595,6 +639,7 @@ main {
     margin-bottom: 25px;
     display: flex;
     align-items: flex-end;
+
     &:hover {
       color: #116ACC;
     }
@@ -636,7 +681,9 @@ main {
     align-items: end;
   }
 
-  &__from-wrapper, &__to-wrapper, &__input-wrapper {
+  &__from-wrapper,
+  &__to-wrapper,
+  &__input-wrapper {
     display: flex;
     align-items: center;
   }
@@ -644,7 +691,7 @@ main {
   &__from-wrapper {
     margin-bottom: 15px;
   }
-  
+
   &__select {
     width: 135px;
     display: block;

@@ -36,9 +36,11 @@ export async function createAccountPage(openedAccount) {
   setChildren(accountTopDown, [accountNumber, accountBalance]);
   setChildren(accountTopWrapper, [accountTopUp, accountTopDown]);
 
-  const newTransferForm = createTransferForm(data.account);
+  const newTransferForm = createTransferForm(data.account)
 
-  const historyBlock = createHistoryBlock()
+  console.log(data.transactions)
+
+  const historyBlock = createHistoryBlock(openedAccount, data.transactions)
 
   setChildren(accountContent, [accountTopWrapper, newTransferForm, historyBlock]);
   setChildren(app, [header, accountContent]);
